@@ -12,7 +12,7 @@ namespace MessageProviderUnitTest
             RecieverRegister<IPostClient>.AddToReg(testSender1);
             RecieverRegister<IPostClient>.AddToReg(testSender2);
 
-            RecieverRegister<IPostClient>.SendTheMessage(new MessageEventArgs<IPostClient>(testSender1, "Sender2", "Hallo TestSender1"));
+            RecieverRegister<IPostClient>.SendTheMessage(new MessageEventArgs<IPostClient>(testSender1, "Sender2", "Das Ist der String!"));
         }
     }
 }

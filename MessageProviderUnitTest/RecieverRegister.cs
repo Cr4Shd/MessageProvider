@@ -54,6 +54,7 @@ namespace MessageProviderUnitTest
         public static bool SendTheMessage(MessageEventArgs<IPostClient> e)
         {
             var y = GetRegList();
+
             foreach ( var item in y )
             {
                 if (item.Equals(e.Reciever))
@@ -65,6 +66,11 @@ namespace MessageProviderUnitTest
                 }
             }
             return false;
+        }
+        public static bool SendMultiMessage(MessageEventArgs<IPostClient> e)
+        {
+            var y = GetRegList();
+
         }
     }
 }
