@@ -110,12 +110,37 @@ namespace MessageProviderUnitTest
             {
                 IPostClient temp;
                 Register.TryGetValue(item, out temp);
-                temp.IncomingMessageObject(e);
+                temp.MessageRecieved(e);
                 
             }
             return true;
                 
 
+        }
+        public static bool SendMultiPackage(PackageEventArgs<IPostClient> e)
+        {
+            var y = GetRegList();
+            List<string> tempList = new List<string>();
+
+            foreach (var itemInRegister in y)
+            {
+                foreach (var itemRecieverInMessage in e.Reciever)
+                {
+                    if (itemRecieverInMessage.Equals(itemInRegister))
+                    {
+                        tempList.Add(itemInRegister);
+                    }
+                }
+            }
+
+            foreach (var item in tempList)
+            {
+                IPostClient temp;
+                Register.TryGetValue(item, out temp);
+                temp.PackageRecieved(e);
+
+            }
+            return true;
         }
     }
 }

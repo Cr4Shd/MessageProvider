@@ -29,6 +29,7 @@ namespace MessageProviderUnitTest
 
             TestSender tes = new TestSender("DerSender");
             tes.SendMessageToCenter(new MessageEventArgs<IPostClient>(tes, senderList, "Hallöchen!"));
+            tes.SendPackageToCenter(new PackageEventArgs<IPostClient>(tes, senderList, new TestSender("Senfgas")));
 
             //PostCenter<IPostClient>.SendMultiMessage(new MessageEventArgs<IPostClient>(tes, senderList, "Hallöchen!"));
             // HIer noch das Senden ausprobieren

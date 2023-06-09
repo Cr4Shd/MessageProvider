@@ -13,11 +13,16 @@ namespace MessageProviderUnitTest
     interface IPostClient
     {
         
-        public delegate void PostClientEventHandler(MessageEventArgs<IPostClient> e);
+        public delegate void OnMessageRecievedEventHandler(MessageEventArgs<IPostClient> e);
+        public delegate void OnPackageRecievedEventHandler(PackageEventArgs<IPostClient> e);
         /// <summary>
         /// Dieses Event muss im Ctor des Objektes via " += " mit der Methode "GetMessageInfo" verlinkt werden - sonst werden Nachrichten nicht verarbeitet
         /// </summary>
-        public event PostClientEventHandler PostClient;
+        public event OnMessageRecievedEventHandler OnMessageRecieved;
+        /// <summary>
+        /// Dieses Event muss im Ctor des Objektes via += mit der Methode "GetPackageInfo" verlinkt werden - sonst werden Nachrichten nicht verarbeitet
+        /// </summary>
+        public event OnPackageRecievedEventHandler OnPackageRecieved;
 
         /// <summary>
         /// Dieser String wird im Empfängerregister (Dictionary) als Key verwendet = Ist der Empfängername
@@ -34,13 +39,26 @@ namespace MessageProviderUnitTest
         /// Diese Methode raised das Event welches die ankommenden Nachricht verwaltet
         /// </summary>
         /// <param name="x"></param>
-        public void IncomingMessageObject(MessageEventArgs<IPostClient> e);
+        public void MessageRecieved(MessageEventArgs<IPostClient> e);
 
         /// <summary>
         /// Methode um direkt aus dem Objekt heraus eine Nachricht ans Postcenter zu versenden. 
         /// </summary>
         public void SendMessageToCenter(MessageEventArgs<IPostClient> e);
 
+        /// <summary>
+        /// WIP - Methode zum Empfangen von Objektpaketen - falls eigene Objekte genutzt werden müssen diese in dieser Methode behandelt werden
+        /// </summary>
+        /// <param name="e"></param>
+        public void PackageRecieved(PackageEventArgs<IPostClient> e);
+        /// <summary>
+        /// WIP Methode zum versenden von Paketen
+        /// </summary>
+        /// <param name="e"></param>
+        public void SendPackageToCenter(PackageEventArgs<IPostClient> e);
+
+        public void GetPackageInfo(PackageEventArgs<IPostClient> e);
+        
         
     }
 }
