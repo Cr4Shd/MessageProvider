@@ -46,30 +46,54 @@ namespace MessageProviderUnitTest
             return x.ToList();
 
         }
+
+        //public static bool SendTheMessage(MessageEventArgs<IPostClient> e)
+        //{
+        //    var y = GetRegList();
+
+        //    foreach ( var item in y )
+        //    {
+        //        if (item.Equals(e.Reciever))
+        //        {
+        //            IPostClient temp;
+        //            Register.TryGetValue(e.Reciever, out temp);
+        //            temp.IncomingMessageObject(e);
+        //            return true;
+        //        }
+        //    }
+        //    return false;
+        //}
+
         /// <summary>
         /// Die Sendermethode - Hierbei wird aus den MessageEventArgs der Empfängername verwendet, um in der Klasseninternen Empfängerliste den Empfänger herauszusuchen.
         /// Sendet dann MessageEventArgs an das entsprechende Senderobjekt
         /// </summary>
         /// <param name="e"></param>
-        public static bool SendTheMessage(MessageEventArgs<IPostClient> e)
-        {
-            var y = GetRegList();
 
-            foreach ( var item in y )
-            {
-                if (item.Equals(e.Reciever))
-                {
-                    IPostClient temp;
-                    Register.TryGetValue(e.Reciever, out temp);
-                    temp.IncomingMessageObject(e);
-                    return true;
-                }
-            }
-            return false;
-        }
         public static bool SendMultiMessage(MessageEventArgs<IPostClient> e)
         {
             var y = GetRegList();
+            List<string> tempList = new List<string>();
+            foreach (var itemInRegister in y)
+            {
+                foreach (var itemRecieverInMessage in e.Reciever)
+                {
+                    if (itemRecieverInMessage.Equals(itemInRegister))
+                    {
+                        tempList.Add(itemInRegister);
+                    }
+                }
+            }
+
+            foreach (var item in tempList)
+            {
+                IPostClient temp;
+                Register.TryGetValue(item, out temp);
+                temp.IncomingMessageObject(e);
+                
+            }
+            return true;
+                
 
         }
     }

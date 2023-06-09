@@ -11,8 +11,11 @@ namespace MessageProviderUnitTest
             TestSender testSender2 = new TestSender("Sender2");
             RecieverRegister<IPostClient>.AddToReg(testSender1);
             RecieverRegister<IPostClient>.AddToReg(testSender2);
+            string[] senders = new string[2];
+            senders[0] = "Sender1";
+            senders[1] = "Sender2";
 
-            RecieverRegister<IPostClient>.SendTheMessage(new MessageEventArgs<IPostClient>(testSender1, "Sender2", "Das Ist der String!"));
+            RecieverRegister<IPostClient>.SendMultiMessage(new MessageEventArgs<IPostClient>(testSender1, senders, "Das Ist der String!"));
         }
     }
 }
