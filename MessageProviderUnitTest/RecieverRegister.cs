@@ -16,10 +16,10 @@ namespace MessageProviderUnitTest
         
 
         /// <summary>
-        /// Methode, um ein Objekt in die Empfängerliste einzutragen. Dieses Objekt muss das IPostClient Interface einbinden
+        /// Methode, um ein IPostClientobjekt in die Empfängerliste einzufügen
         /// </summary>
         /// <param name="t"></param>
-        public static void AddToReg(T t)
+        public static void AddSingleToReg(T t)
         {
             if (t != null && t is IPostClient)
             {
@@ -33,10 +33,10 @@ namespace MessageProviderUnitTest
         }
 
         /// <summary>
-        /// WIP - Kann eine Liste von objekten als Empfänger hinzufügen - 
+        /// Methode, um eine Liste von IPostClient Objekten in das Register einzufügen 
         /// </summary>
         /// <param name="t"></param>
-        public static void AddMultipleToReg(T[] t)
+        public static void AddMultipleToReg(IEnumerable<IPostClient> t)
         {
             foreach (var item in t)
             {

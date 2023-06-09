@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace MessageProviderUnitTest
 {
@@ -6,29 +7,34 @@ namespace MessageProviderUnitTest
     {
         public static void Main(string[] args)
         {
-            
-            TestSender testSender1 = new TestSender("Sender1");
-            TestSender testSender2 = new TestSender("Sender2");
-            TestSender testSender3 = new TestSender("Sender3");
-            TestSender testSender4 = new TestSender("Sender4");
-            TestSender testSender5 = new TestSender("Sender5");
-            TestSender testSender6 = new TestSender("Sender6");
+            List<IPostClient> clients = new List<IPostClient>
+            {
+                new TestSender("Sender1"),
+                new TestSender("Sender2"),
+                new TestSender("Sender3"),
+                new TestSender("Sender4"),
+                new TestSender("Sender5"),
+                new TestSender("Sender6"),
+                new TestSender("Sender7"),
 
-            RecieverRegister<IPostClient>.AddToReg(testSender1);
-            RecieverRegister<IPostClient>.AddToReg(testSender2);
+            };
+            RecieverRegister<IPostClient>.AddMultipleToReg(clients);
 
-            List<string> senders = new List<string>
+            List<string> senderList = new List<string>
             {
                 "Sender1",
-                "Sender2",
-                "Sender3",
                 "Sender4",
+                "Sender6"
             };
 
-            RecieverRegister<IPostClient>.SendMultiMessage(new MessageEventArgs<IPostClient>(testSender1, senders, "Das Ist der String!"));
+            TestSender tes = new TestSender("DerSender");
+            RecieverRegister<IPostClient>.SendMultiMessage(new MessageEventArgs<IPostClient>(tes, senderList, "Hallöchen!"));
+            // HIer noch das Senden ausprobieren
         }
+            
+            
     }
 }
 
 /* TODO :
- * Multiple Empfänger - Nachricht erhalten - Listen abarbeiten
+ * Multiple Empfänger - Nachricht erhalten - Listen abarbeiten*/
