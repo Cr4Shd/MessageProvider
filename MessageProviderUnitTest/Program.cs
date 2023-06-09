@@ -18,7 +18,7 @@ namespace MessageProviderUnitTest
                 new TestSender("Sender7"),
 
             };
-            RecieverRegister<IPostClient>.AddMultipleToReg(clients);
+            PostCenter<IPostClient>.AddMultipleToReg(clients);
 
             List<string> senderList = new List<string>
             {
@@ -28,7 +28,9 @@ namespace MessageProviderUnitTest
             };
 
             TestSender tes = new TestSender("DerSender");
-            RecieverRegister<IPostClient>.SendMultiMessage(new MessageEventArgs<IPostClient>(tes, senderList, "Hallöchen!"));
+            tes.SendMessageToCenter(new MessageEventArgs<IPostClient>(tes, senderList, "Hallöchen!"));
+
+            //PostCenter<IPostClient>.SendMultiMessage(new MessageEventArgs<IPostClient>(tes, senderList, "Hallöchen!"));
             // HIer noch das Senden ausprobieren
         }
             

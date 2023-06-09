@@ -35,7 +35,12 @@ namespace MessageProviderUnitTest
         /// </summary>
         /// <param name="x"></param>
         public void IncomingMessageObject(MessageEventArgs<IPostClient> e);
-        
+
+        /// <summary>
+        /// Methode um direkt aus dem Objekt heraus eine Nachricht ans Postcenter zu versenden. 
+        /// </summary>
+        public void SendMessageToCenter(MessageEventArgs<IPostClient> e);
+
         
     }
 }

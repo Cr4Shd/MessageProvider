@@ -9,7 +9,7 @@ using System.Xml.Schema;
 
 namespace MessageProviderUnitTest
 {
-    static class RecieverRegister<T>
+    static class PostCenter<T> 
     {
 
         public static Dictionary<string, IPostClient> Register { get; set; } = new Dictionary<string, IPostClient>();

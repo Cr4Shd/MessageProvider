@@ -26,5 +26,10 @@ namespace MessageProviderUnitTest
         {
             PostClient?.Invoke(e);
         }
+
+        public void SendMessageToCenter(MessageEventArgs<IPostClient> e)
+        {
+            PostCenter<IPostClient>.SendMultiMessage(e);
+        }
     }
 }
