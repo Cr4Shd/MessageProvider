@@ -13,10 +13,10 @@ namespace MessageProviderUnitTest
     class MessageEventArgs<T>
     {
         public T Sender { get; set; }
-        public string[] Reciever { get; set; }
+        public IEnumerable<string> Reciever { get; set; }
         public string Message { get; set; }
 
-        public MessageEventArgs(T sender, string[] reciever, string message)
+        public MessageEventArgs(T sender, IEnumerable<string> reciever, string message)
         {
             Sender = sender;
             Reciever = reciever;

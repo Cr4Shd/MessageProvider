@@ -31,6 +31,26 @@ namespace MessageProviderUnitTest
                 Console.WriteLine("Objekt kann nicht hinzugefügt werden!");
             }
         }
+
+        /// <summary>
+        /// WIP - Kann eine Liste von objekten als Empfänger hinzufügen - 
+        /// </summary>
+        /// <param name="t"></param>
+        public static void AddMultipleToReg(T[] t)
+        {
+            foreach (var item in t)
+            {
+                if (item != null && item is IPostClient)
+                {
+                    var xItem = item as IPostClient;
+                    Register.Add(xItem.IPostName, xItem);
+                }
+                else
+                {
+                    Console.WriteLine("Objekt kann nicht hinzugefügt werden!");
+                }
+            }
+        }
         
         /// <summary>
         /// Verarbeitet alle Keys des Registerdictionarys zu einer Liste und gibt diese zurück. 
@@ -65,7 +85,7 @@ namespace MessageProviderUnitTest
         //}
 
         /// <summary>
-        /// Die Sendermethode - Hierbei wird aus den MessageEventArgs der Empfängername verwendet, um in der Klasseninternen Empfängerliste den Empfänger herauszusuchen.
+        /// Die Sendermethode - Hier wird aus dem IEnum welches die Empfängerliste der Nachricht darstellt durchlaufen und an die entsprechenden Objekte gesendet
         /// Sendet dann MessageEventArgs an das entsprechende Senderobjekt
         /// </summary>
         /// <param name="e"></param>
@@ -74,6 +94,7 @@ namespace MessageProviderUnitTest
         {
             var y = GetRegList();
             List<string> tempList = new List<string>();
+
             foreach (var itemInRegister in y)
             {
                 foreach (var itemRecieverInMessage in e.Reciever)
