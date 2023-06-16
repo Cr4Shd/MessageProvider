@@ -25,7 +25,21 @@ namespace MessageProviderUnitTest
 
         public void MessageRecieved(MessageEventArgs<IPostClient> e)
         {
-            OnMessageRecieved?.Invoke(e);
+            switch (e.MType)
+            {
+                case MessageEventArgs<IPostClient>.MessageType.Message:
+                    OnMessageRecieved?.Invoke(e);
+                    break;
+
+                case MessageEventArgs<IPostClient>.MessageType.Package:
+                    OnPackageRecieved?.Invoke(e);
+                    break;
+
+                default:
+                    break;
+            }
+
+
         }
 
         public void SendMessageToCenter(MessageEventArgs<IPostClient> e)
@@ -33,21 +47,21 @@ namespace MessageProviderUnitTest
             PostCenter<IPostClient>.SendMultiMessage(e);
         }
 
-        public void PackageRecieved(PackageEventArgs<IPostClient> e)
+        public void PackageRecieved(MessageEventArgs<IPostClient> e)
         {
             OnPackageRecieved?.Invoke(e);
         }
 
-        
 
-        public void SendPackageToCenter(PackageEventArgs<IPostClient> e)
+
+        public void SendPackageToCenter(MessageEventArgs<IPostClient> e)
         {
             PostCenter<IPostClient>.SendMultiPackage(e);
         }
 
-        public void GetPackageInfo(PackageEventArgs<IPostClient> e)
+        public void GetPackageInfo(MessageEventArgs<IPostClient> e)
         {
-            Console.WriteLine(e.Package.GetType().ToString());
+            Console.WriteLine(e.Sender.IPostName);
         }
     }
 }

@@ -15,6 +15,13 @@ namespace MessageProviderUnitTest
         public T Sender { get; set; }
         public IEnumerable<string> Reciever { get; set; }
         public string Message { get; set; }
+        public enum MessageType
+        {
+            Package = 0,
+            Message = 1,
+            Other = 2
+        }
+        public MessageType MType { get; set; }
 
         /// <summary>
         /// Para0 = Das Senderobjekt
@@ -30,5 +37,13 @@ namespace MessageProviderUnitTest
             Reciever = reciever;
             Message = message;
         }
+        public MessageEventArgs(T sender, IEnumerable<string> reciever, string message, MessageType messageType)
+        {
+            Sender = sender;
+            Reciever = reciever;
+            Message = message;
+            MType = messageType;
+        }
+        
     }
 }

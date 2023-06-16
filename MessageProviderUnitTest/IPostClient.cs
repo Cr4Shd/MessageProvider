@@ -14,7 +14,7 @@ namespace MessageProviderUnitTest
     {
         
         public delegate void OnMessageRecievedEventHandler(MessageEventArgs<IPostClient> e);
-        public delegate void OnPackageRecievedEventHandler(PackageEventArgs<IPostClient> e);
+        public delegate void OnPackageRecievedEventHandler(MessageEventArgs<IPostClient> e);
         /// <summary>
         /// Dieses Event muss im Ctor des Objektes via " += " mit der Methode "GetMessageInfo" verlinkt werden - sonst werden Nachrichten nicht verarbeitet
         /// </summary>
@@ -50,19 +50,19 @@ namespace MessageProviderUnitTest
         /// WIP - Methode zum Empfangen von Objektpaketen - gibt das Paket via Event an die GetPackageInfo() weiter
         /// </summary>
         /// <param name="e"></param>
-        public void PackageRecieved(PackageEventArgs<IPostClient> e);
+        public void PackageRecieved(MessageEventArgs<IPostClient> e);
 
         /// <summary>
         /// WIP Methode zum versenden von Paketen an das PostCenter - 
         /// </summary>
         /// <param name="e"></param>
-        public void SendPackageToCenter(PackageEventArgs<IPostClient> e);
+        public void SendPackageToCenter(MessageEventArgs<IPostClient> e);
 
         /// <summary>
         /// Innerhalb dieser Methode werden die Objekte behandelt, welche mit dem Paketsystem empfangen wurden
         /// </summary>
         /// <param name="e"></param>
-        public void GetPackageInfo(PackageEventArgs<IPostClient> e);
+        public void GetPackageInfo(MessageEventArgs<IPostClient> e);
         
         
     }

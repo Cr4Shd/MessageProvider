@@ -67,6 +67,8 @@ namespace MessageProviderUnitTest
 
         }
 
+        ///[Obsolete]
+        
         //public static bool SendTheMessage(MessageEventArgs<IPostClient> e)
         //{
         //    var y = GetRegList();
@@ -117,7 +119,7 @@ namespace MessageProviderUnitTest
                 
 
         }
-        public static bool SendMultiPackage(PackageEventArgs<IPostClient> e)
+        public static bool SendMultiPackage(MessageEventArgs<IPostClient> e)
         {
             var y = GetRegList();
             List<string> tempList = new List<string>();
@@ -137,7 +139,7 @@ namespace MessageProviderUnitTest
             {
                 IPostClient temp;
                 Register.TryGetValue(item, out temp);
-                temp.PackageRecieved(e);
+                temp.MessageRecieved(e);
 
             }
             return true;
