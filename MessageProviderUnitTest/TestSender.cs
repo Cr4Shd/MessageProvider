@@ -18,6 +18,7 @@ namespace MessageProviderUnitTest
             OnMessageRecieved += GetMessageInfo;
             OnPackageRecieved += GetPackageInfo;
         }
+
         public void GetMessageInfo(MessageEventArgs<IPostClient> e)
         {
             Console.WriteLine(e.Message);

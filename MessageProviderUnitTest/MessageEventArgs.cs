@@ -21,6 +21,7 @@ namespace MessageProviderUnitTest
             Message = 1,
             Other = 2
         }
+
         public MessageType MType { get; set; }
 
         /// <summary>
