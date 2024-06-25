@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace MessageProviderUnitTest
 {
     /// <summary>
-    /// Die Messageklasse - <T> ist IPostClient
+    /// Die Messageklasse - <T> ist IPostClient Test
     /// </summary>
     /// <typeparam name="T"></typeparam>
     class MessageEventArgs<T>
